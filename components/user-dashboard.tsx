@@ -125,12 +125,12 @@ export function UserDashboard() {
         </nav>
       </header>
 
-      <main className="w-full max-w-full p-4">
+      <div className="min-h-screen bg-background overflow-x-hidden">
         {activeTab === "inicio" && <InicioTab />}
         {activeTab === "ofertas" && <OfertasTab />}
         {activeTab === "stock" && <StockTab onCanjeExitoso={cargarPuntos} />}
         {activeTab === "estado" && <EstadoTab />}
-      </main>
+      </div>
 
       <PerfilModal
         open={isPerfilOpen}
