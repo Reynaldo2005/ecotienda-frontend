@@ -63,67 +63,66 @@ export function UserDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-primary text-primary-foreground">
-        <div className="container mx-auto flex h-14 items-center justify-between px-4">
-          <div className="flex items-center gap-6">
+        <div className="container mx-auto px-4">
+          {/* Fila superior: logo + puntos + avatar + logout */}
+          <div className="flex h-14 items-center justify-between">
             <div className="flex items-center gap-2">
               <Image src="/ecotienda-logo.jpg" alt="EcoTienda" width={32} height={32} className="rounded-full" />
               <span className="font-bold">EcoTienda</span>
             </div>
-            <nav className="flex items-center gap-1">
-              {tabs.map((tab) => {
-                const Icon = tab.icon
-                return (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-1 px-3 py-2 rounded-md transition-colors text-sm font-medium ${
-                      activeTab === tab.id
-                        ? "bg-primary-foreground/20 text-primary-foreground"
-                        : "text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
-                    }`}
-                  >
-                    <Icon className="h-4 w-4" />
-                    {tab.label}
-                  </button>
-                )
-              })}
-            </nav>
+
+            <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1 rounded-full bg-primary-foreground/10 px-3 py-1">
+                <Star className="h-4 w-4 text-accent" />
+                <span className="font-semibold">{puntosActuales}</span>
+                <span className="text-sm opacity-80">pts</span>
+              </div>
+              <button
+                onClick={() => setIsPerfilOpen(true)}
+                className="flex items-center gap-2 hover:opacity-80 transition-opacity"
+                title="Mi Perfil"
+              >
+                <Avatar className="h-8 w-8 border-2 border-primary-foreground/30">
+                  {fotoPerfil ? (
+                    <img src={fotoPerfil} alt="Foto de perfil" className="h-full w-full object-cover rounded-full" />
+                  ) : (
+                    <AvatarFallback className="bg-primary-foreground/20 text-primary-foreground text-xs">
+                      {user.nombre[0]}{user.apellido[0]}
+                    </AvatarFallback>
+                  )}
+                </Avatar>
+              </button>
+              <Button
+                onClick={logout}
+                variant="ghost"
+                size="sm"
+                className="text-primary-foreground hover:bg-red-500/20 hover:text-red-100"
+              >
+                <LogOut className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1">
-              <Star className="h-4 w-4 text-accent" />
-              <span className="font-semibold">{puntosActuales}</span>
-              <span className="text-sm opacity-80">pts</span>
-            </div>
-            <button
-              onClick={() => setIsPerfilOpen(true)}
-              className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-              title="Mi Perfil"
-            >
-              <Avatar className="h-8 w-8 border-2 border-primary-foreground/30">
-                {fotoPerfil ? (
-                  <img
-                    src={fotoPerfil}
-                    alt="Foto de perfil"
-                    className="h-full w-full object-cover rounded-full"
-                  />
-                ) : (
-                  <AvatarFallback className="bg-primary-foreground/20 text-primary-foreground text-xs">
-                    {user.nombre[0]}{user.apellido[0]}
-                  </AvatarFallback>
-                )}
-              </Avatar>
-            </button>
-            <Button
-              onClick={logout}
-              variant="ghost"
-              size="sm"
-              className="text-primary-foreground hover:bg-red-500/20 hover:text-red-100 gap-1"
-            >
-              <LogOut className="h-4 w-4" />
-            </Button>
-          </div>
+          {/* Fila inferior: pestañas */}
+          <nav className="flex items-center gap-1 pb-1 overflow-x-auto">
+            {tabs.map((tab) => {
+              const Icon = tab.icon
+              return (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-1 px-3 py-2 rounded-md transition-colors text-sm font-medium whitespace-nowrap ${
+                    activeTab === tab.id
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
+                  }`}
+                >
+                  <Icon className="h-4 w-4" />
+                  {tab.label}
+                </button>
+              )
+            })}
+          </nav>
         </div>
       </header>
 
