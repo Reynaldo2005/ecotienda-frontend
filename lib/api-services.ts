@@ -174,7 +174,7 @@ export const perfilService = {
     formData.append("foto", file);
 
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000/api";
-    const response = await fetch("http://localhost:3000/api/auth/foto-perfil", {
+    const response = await fetch(`${baseUrl}/auth/foto-perfil`, {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
