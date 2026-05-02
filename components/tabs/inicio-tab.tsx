@@ -269,34 +269,35 @@ export function InicioTab() {
               <Table>
                 <TableHeader>
                   <TableRow className="bg-muted/50">
-                    <TableHead>Material</TableHead>
-                    <TableHead className="text-center w-15">Imagen</TableHead>
-                    <TableHead className="text-right">Puntos/kg</TableHead>
+                    <TableHead className="w-[40%]">Material</TableHead>
+                    <TableHead className="text-center w-[30%]">Imagen</TableHead>
+                    <TableHead className="text-right w-[30%]">Puntos/kg</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
-                {materiales.map((material) => (
-                  <TableRow key={material.id}>
-                    <TableCell className="font-medium">
-                      {material.nombre}
-                    </TableCell>
-                    
-                    <TableCell className="text-center">
-                      <img
-                          src={imagenesMateriales[material.nombre] ?? "/materiales/default.jpg"}
-                          alt={material.nombre}
-                          className="h-24 w-24 min-w-[96px] object-cover rounded-xl border border-green-200 shadow-sm"
-                        />
+                  {materiales.map((material) => (
+                    <TableRow key={material.id}>
+                      <TableCell className="font-medium text-xs sm:text-sm">
+                        {material.nombre}
                       </TableCell>
-                        <TableCell className="text-right">
-                          <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-1 text-sm font-semibold text-primary">
-                            <Star className="h-3 w-3" />
-                            {material.puntos_por_kilo}
-                          </span>
-                        </TableCell>
-                  </TableRow>
-                ))}
-              </TableBody>
+                      <TableCell className="text-center">
+                        <div className="flex justify-center">
+                          <img
+                            src={imagenesMateriales[material.nombre] ?? "/materiales/default.jpg"}
+                            alt={material.nombre}
+                            className="h-14 w-14 sm:h-24 sm:w-24 object-cover rounded-xl border border-green-200 shadow-sm"
+                          />
+                        </div>
+                      </TableCell>
+                      <TableCell className="text-right">
+                        <span className="inline-flex items-center gap-1 rounded-full bg-primary/10 px-2 py-1 text-xs sm:text-sm font-semibold text-primary">
+                          <Star className="h-3 w-3" />
+                          {material.puntos_por_kilo}
+                        </span>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
               </Table>
             </div>
           )}
