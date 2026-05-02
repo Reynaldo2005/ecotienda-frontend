@@ -63,7 +63,7 @@ export function UserDashboard() {
   return (
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-primary text-primary-foreground">
-        <div className="container mx-auto px-4">
+        <div className="w-full px-4">
           {/* Fila superior: logo + puntos + avatar + logout */}
           <div className="flex h-14 items-center justify-between">
             <div className="flex items-center gap-2">
@@ -126,7 +126,7 @@ export function UserDashboard() {
         </div>
       </header>
 
-      <main className="container mx-auto p-4">
+      <main className="w-full max-w-full p-4">
         {activeTab === "inicio" && <InicioTab />}
         {activeTab === "ofertas" && <OfertasTab />}
         {activeTab === "stock" && <StockTab onCanjeExitoso={cargarPuntos} />}
