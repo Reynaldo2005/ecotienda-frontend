@@ -64,13 +64,21 @@ export function UserDashboard() {
     <div className="min-h-screen bg-background">
       <header className="sticky top-0 z-50 w-full border-b bg-primary text-primary-foreground">
         {/* Fila 1: Logo + Puntos + Avatar + Logout */}
-        <div className="flex h-14 items-center justify-between px-3">
-          <div className="flex items-center gap-2">
-            <Image src="/ecotienda-logo.jpg" alt="EcoTienda" width={28} height={28} className="rounded-full" />
-            <span className="font-bold text-sm">EcoTienda</span>
+        <div className="flex h-14 items-center justify-between px-3 gap-2">
+          <div className="flex items-center gap-2 shrink-0">
+            <Image
+            src="/ecotienda-logo.jpg"
+            alt="EcoTienda"
+            width={28} 
+            height={28} 
+            className="w-7 h-7 object-contain" 
+          />
+            <span className="font-bold text-sm whitespace-nowrap">
+              EcoTienda
+            </span>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 overflow-x-auto max-w-full">
             <div className="flex items-center gap-1 rounded-full bg-primary-foreground/10 px-2 py-1">
               <Star className="h-3 w-3 text-accent" />
               <span className="font-semibold text-sm">{puntosActuales}</span>
@@ -125,7 +133,7 @@ export function UserDashboard() {
         </nav>
       </header>
 
-      <div className="min-h-screen bg-background overflow-x-hidden">
+      <div className="min-h-screen bg-background overflow-x-hidden w-full">
         {activeTab === "inicio" && <InicioTab />}
         {activeTab === "ofertas" && <OfertasTab />}
         {activeTab === "stock" && <StockTab onCanjeExitoso={cargarPuntos} />}
