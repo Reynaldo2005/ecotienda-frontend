@@ -87,7 +87,7 @@ export function StockAdminTab() {
         const token = localStorage.getItem("ecotienda_token")
         const formData = new FormData()
         formData.append("imagen", imagenFile)
-        const response = await fetch("http://localhost:3000/api/ofertas/upload-imagen", {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/ofertas/upload-imagen`, {
           method: "POST",
           headers: { Authorization: `Bearer ${token}` },
           body: formData,

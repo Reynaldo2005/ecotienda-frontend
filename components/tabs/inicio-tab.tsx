@@ -40,7 +40,7 @@ export function InicioTab() {
 
   const cargarMateriales = async () => {
     try {
-      const response = await fetch("http://localhost:3000/api/materiales")
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/materiales`)
       const data = await response.json()
       setMateriales(Array.isArray(data) ? data : [])
     } catch (error) {

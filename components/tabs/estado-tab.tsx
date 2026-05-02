@@ -59,7 +59,7 @@ export function EstadoTab() {
     try {
       const [canjesData, reclamosData] = await Promise.all([
         canjesService.getMisCanjes() as Promise<Canje[]>,
-        fetch('http://localhost:3000/api/ofertas/mis-reclamos', {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/ofertas/mis-reclamos`, {
           headers: {
             Authorization: `Bearer ${localStorage.getItem('ecotienda_token')}`
           }

@@ -67,7 +67,7 @@ export function PerfilModal({ open, onOpenChange, onFotoActualizada }: PerfilMod
       setHistorial(Array.isArray(historialData) ? historialData : [])
     // Cargar foto de perfil si existe
     const token = localStorage.getItem("ecotienda_token")
-    const response = await fetch("http://localhost:3000/api/auth/mi-foto", {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/auth/mi-foto`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       if (response.ok) {

@@ -55,7 +55,7 @@ export function RegistradosTab() {
       setIsLoading(true)
       const [clientesData, materialesData] = await Promise.all([
         adminService.getClientes() as Promise<Cliente[]>,
-        fetch('http://localhost:3000/api/materiales')
+        fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/materiales`)
         .then(r => r.json())
         .then(data => Array.isArray(data) ? data : [])
       ])
@@ -81,7 +81,7 @@ export function RegistradosTab() {
   }
   try {
     setRegistrando(true)
-    await fetch('http://localhost:3000/api/reciclaje/manual', {
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/api'}/reciclaje/manual`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
