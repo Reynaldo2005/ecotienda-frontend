@@ -85,16 +85,26 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
-    // Recuperar sesión del localStorage al montar
-    const savedToken = localStorage.getItem("ecotienda_token")
-    const savedUser = localStorage.getItem("ecotienda_user")
+  const savedToken = localStorage.getItem("ecotienda_token")
+  const savedUser = localStorage.getItem("ecotienda_user")
+  const expiracion = localStorage.getItem("ecotienda_expiracion")
+  
+  if (savedToken && savedUser && expiracion) {
+    const ahora = new Date().getTime()
+    const expirado = ahora > parseInt(expiracion)
     
-    if (savedToken && savedUser) {
+    if (expirado) {
+      // Sesión expirada, limpiar todo
+      localStorage.removeItem("ecotienda_token")
+      localStorage.removeItem("ecotienda_user")
+      localStorage.removeItem("ecotienda_expiracion")
+    } else {
       setToken(savedToken)
       setUser(JSON.parse(savedUser))
     }
-    setIsLoading(false)
-  }, [])
+  }
+  setIsLoading(false)
+}, [])
 
   // Cargar usuarios cuando el usuario logueado es admin
   useEffect(() => {
@@ -137,8 +147,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       
       setToken(newToken)
       setUser(mappedUser)
+      const expiracion = new Date().getTime() + 8 * 60 * 60 * 1000 // 8 horas en ms
       localStorage.setItem("ecotienda_token", newToken)
       localStorage.setItem("ecotienda_user", JSON.stringify(mappedUser))
+      localStorage.setItem("ecotienda_expiracion", expiracion.toString())
       
       return { success: true }
     } catch (error) {
@@ -170,11 +182,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }
 
   const logout = () => {
-    setUser(null)
-    setToken(null)
-    setUsers([])
-    localStorage.removeItem("ecotienda_token")
-    localStorage.removeItem("ecotienda_user")
+  setUser(null)
+  setToken(null)
+  setUsers([])
+  localStorage.removeItem("ecotienda_token")
+  localStorage.removeItem("ecotienda_user")
+  localStorage.removeItem("ecotienda_expiracion")
   }
 
   const loadUsers = async () => {
