@@ -111,22 +111,21 @@ export function UserDashboard() {
         </div>
 
         {/* Fila 2: Pestañas */}
-        <nav className="flex items-center border-t border-primary-foreground/20">
+       <nav className="flex items-center border-t border-primary-foreground/20 overflow-x-auto scrollbar-none">
           {tabs.map((tab) => {
             const Icon = tab.icon
             return (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex flex-1 items-center justify-center gap-1 py-2 text-xs font-medium transition-colors ${
+                className={`flex shrink-0 items-center justify-center gap-1 px-5 py-2 text-xs font-medium transition-colors ${
                   activeTab === tab.id
                     ? "bg-primary-foreground/20 text-primary-foreground border-b-2 border-primary-foreground"
                     : "text-primary-foreground/70 hover:text-primary-foreground hover:bg-primary-foreground/10"
                 }`}
               >
                 <Icon className="h-4 w-4" />
-                <span className="hidden sm:inline">{tab.label}</span>
-                <span className="sm:hidden text-xs">{tab.label}</span>
+                <span>{tab.label}</span>
               </button>
             )
           })}
