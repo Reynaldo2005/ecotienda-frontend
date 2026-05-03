@@ -233,13 +233,14 @@ export function LandingPage({ onLogin, onRegister }: LandingPageProps) {
               <p>"Cada residuo que reciclas es un paso más hacia un Aucayacu más limpio y crear una cultura ambiental más conciente” 🌱</p>
             </div>
             
-            <div className="aspect-video overflow-hidden rounded-xl border bg-muted">
-            <video
-              className="w-full h-full object-cover"
-              controls
-              src="/videos/EcoTienda_Vision.mp4"
-            />
-          </div>
+            <div className="aspect-video overflow-hidden rounded-xl border">
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/watch?v=AKyRXCZPa3E"
+                title="Video Aucayacu"
+                allowFullScreen
+              />
+            </div>
               <div className="flex flex-wrap justify-center gap-6">
             </div>
           </div>
@@ -292,10 +293,11 @@ export function LandingPage({ onLogin, onRegister }: LandingPageProps) {
           <div className="mx-auto max-w-4xl">
             <div className="aspect-video overflow-hidden rounded-xl border bg-muted">
               {/* Placeholder for video - user will add their own */}
-              <video
-                className="w-full h-full object-cover"
-                controls
-                src="/videos/EcoTienda_Tutorial.mp4"
+              <iframe
+                className="w-full h-full"
+                src="https://www.youtube.com/watch?v=7hdJ1sEjZjQ"
+                title="Video Tutorial EcoTienda"
+                allowFullScreen
               />
             </div>
           </div>
