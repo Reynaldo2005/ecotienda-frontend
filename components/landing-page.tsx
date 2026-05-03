@@ -236,7 +236,7 @@ export function LandingPage({ onLogin, onRegister }: LandingPageProps) {
             <div className="aspect-video overflow-hidden rounded-xl border">
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/watch?v=AKyRXCZPa3E"
+                src="https://www.youtube.com/embed/AKyRXCZPa3E"
                 title="Video Aucayacu"
                 allowFullScreen
               />
@@ -295,7 +295,7 @@ export function LandingPage({ onLogin, onRegister }: LandingPageProps) {
               {/* Placeholder for video - user will add their own */}
               <iframe
                 className="w-full h-full"
-                src="https://www.youtube.com/watch?v=7hdJ1sEjZjQ"
+                src="https://www.youtube.com/embed/7hdJ1sEjZjQ"
                 title="Video Tutorial EcoTienda"
                 allowFullScreen
               />
